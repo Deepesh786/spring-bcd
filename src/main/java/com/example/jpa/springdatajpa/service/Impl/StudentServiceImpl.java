@@ -5,12 +5,14 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.jpa.springdatajpa.entity.Student;
 import com.example.jpa.springdatajpa.repository.StudentRepository;
 import com.example.jpa.springdatajpa.service.StudentService;
 
 @Component
+@Transactional
 public class StudentServiceImpl implements StudentService {
 	
 	@Autowired
@@ -38,9 +40,10 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public void deleteEmployee(Long studentId) {
+	public void deleteEmployee(String emailId) {
 
-		repository.deleteById(studentId);
+		//repository.deleteById(studentId);
+		repository.deleteByEmailId(emailId);
 
 	}
 	

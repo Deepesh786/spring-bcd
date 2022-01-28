@@ -60,7 +60,6 @@ public class Student {
 	private String firstName;
 	
 	
-	//@JsonProperty("lastName")
 	@Column(name = "lastname")
 	private String lastName;
 
@@ -68,19 +67,15 @@ public class Student {
 			name = "emailid",
 			nullable = false
 			)
-	//@JsonProperty("emailId")
 	private String emailId;
 	
 	@Column(name = "guardianname")
-	//@JsonProperty("guardianName")
 	private String guardianName;
 	
 	@Column(name = "guardianemail")
-	//@JsonProperty("guardianEmail")
 	private String guardianEmail;
 	
 	@Column(name = "guardianmobile")
-	//@JsonProperty("guardianMobile")
 	private String guardianMobile;
 
 	

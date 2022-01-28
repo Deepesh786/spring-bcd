@@ -18,5 +18,7 @@ public interface StudentService {
 	
 	Optional<Student> getEmployee(Long studentId);
 	
-	void deleteEmployee(Long studentId);
+	void deleteEmployee(String emailId);
+	
+	
 }
