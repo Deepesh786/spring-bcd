@@ -37,8 +37,7 @@ public class StudentController {
 		
 		
 		Student student= new ObjectMapper().readValue(studentObj.toString(), Student.class);
-		//System.out.println("diepsh"+studentObj);
-		//log.info(body);
+		
 		student = service.updateEmployee(student);
 		return student;
 	}
