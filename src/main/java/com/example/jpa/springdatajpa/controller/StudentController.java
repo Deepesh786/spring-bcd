@@ -7,6 +7,8 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.jpa.springdatajpa.entity.Student;
+import com.example.jpa.springdatajpa.service.StudentService;
 import com.example.jpa.springdatajpa.service.Impl.StudentServiceImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -24,11 +27,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RestController
 public class StudentController {
 
-//	@Autowired
-//	private StudentService service;
-	
 	@Autowired
-	private StudentServiceImpl impl;
+	private StudentService service;
+	
+//	@Autowired
+//	private StudentServiceImpl impl;
 
 //	@Autowired
 //	public StudentController(StudentService service) {
@@ -39,21 +42,22 @@ public class StudentController {
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@PostMapping(path = "/save")
-	public Student save(@RequestBody String body) throws JsonMappingException, JsonProcessingException {
+	public ResponseEntity<String> save(@RequestBody String body) throws JsonMappingException, JsonProcessingException {
 		JSONObject studentObj = new JSONObject(body);
 
 		Student student = new ObjectMapper().readValue(studentObj.toString(), Student.class);
 
-		student = impl.updateEmployee(student);
-		return student;
+		student = service.updateEmployee(student);
+		
+		return new ResponseEntity<>(student.toString(),HttpStatus.OK);
 	}
 
 	@DeleteMapping(path = "/deleteByEmailId/{emailId}")
-	public String deleteProperty(
+	public ResponseEntity<String> deleteProperty(
 			@PathVariable(required = true, value = "emailId") @NotNull @NotEmpty String emailId) {
-			impl.deleteEmployee(emailId);
+			service.deleteEmployee(emailId);
 			//impl.deleteEmployee(emailId);
-		return "Success";
+		return new ResponseEntity<String>("Success",HttpStatus.OK);
 	}
 
 }

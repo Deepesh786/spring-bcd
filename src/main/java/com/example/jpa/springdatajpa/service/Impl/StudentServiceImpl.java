@@ -12,7 +12,7 @@ import com.example.jpa.springdatajpa.repository.StudentRepository;
 import com.example.jpa.springdatajpa.service.StudentService;
 
 @Component
-@Transactional
+
 public class StudentServiceImpl implements StudentService {
 	
 	@Autowired
@@ -40,6 +40,7 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
+	@Transactional
 	public void deleteEmployee(String emailId) {
 
 		//repository.deleteById(studentId);

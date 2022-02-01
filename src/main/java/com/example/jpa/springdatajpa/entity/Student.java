@@ -17,6 +17,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 //@Data
@@ -32,7 +33,6 @@ import lombok.NoArgsConstructor;
 		)
 //@JsonIgnoreProperties(ignoreUnknown = true)
 //@JsonInclude(value = Include.NON_NULL)
-
 public class Student {
 
 //	@Id
@@ -134,6 +134,13 @@ public class Student {
 
 	public void setGuardianMobile(String guardianMobile) {
 		this.guardianMobile = guardianMobile;
+	}
+
+	@Override
+	public String toString() {
+		return "Student [studentId=" + studentId + ", firstName=" + firstName + ", lastName=" + lastName + ", emailId="
+				+ emailId + ", guardianName=" + guardianName + ", guardianEmail=" + guardianEmail + ", guardianMobile="
+				+ guardianMobile + "]";
 	}
 	
 	
