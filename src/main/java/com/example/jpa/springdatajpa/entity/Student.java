@@ -1,6 +1,7 @@
 package com.example.jpa.springdatajpa.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,15 +10,12 @@ import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.example.jpa.springdatajpa.converters.JSONObjectConverter;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Entity
 //@Data
@@ -68,6 +66,10 @@ public class Student {
 			nullable = false
 			)
 	private String emailId;
+	
+	@Column(columnDefinition = "json")
+	@Convert(converter = JSONObjectConverter.class)
+	private JsonNode attribute;
 	
 	@Column(name = "guardianname")
 	private String guardianName;
@@ -135,13 +137,23 @@ public class Student {
 	public void setGuardianMobile(String guardianMobile) {
 		this.guardianMobile = guardianMobile;
 	}
+	
+	public JsonNode getAttribute() {
+		return attribute;
+	}
+
+	public void setAttribute(JsonNode attribute) {
+		this.attribute = attribute;
+	}
 
 	@Override
 	public String toString() {
 		return "Student [studentId=" + studentId + ", firstName=" + firstName + ", lastName=" + lastName + ", emailId="
-				+ emailId + ", guardianName=" + guardianName + ", guardianEmail=" + guardianEmail + ", guardianMobile="
-				+ guardianMobile + "]";
+				+ emailId + ", attribute=" + attribute + ", guardianName=" + guardianName + ", guardianEmail="
+				+ guardianEmail + ", guardianMobile=" + guardianMobile + "]";
 	}
+
+	
 	
 	
 	

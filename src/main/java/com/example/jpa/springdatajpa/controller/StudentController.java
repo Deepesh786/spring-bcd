@@ -1,5 +1,6 @@
 package com.example.jpa.springdatajpa.controller;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.validation.constraints.NotEmpty;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.jpa.springdatajpa.Response.ApiResponse;
 import com.example.jpa.springdatajpa.entity.Student;
 import com.example.jpa.springdatajpa.service.SpringContext;
 import com.example.jpa.springdatajpa.service.StudentService;
@@ -61,13 +63,17 @@ public class StudentController {
 		student = serviceDP.updateEmployee(student);
 		
 		return new ResponseEntity<>(student.toString(),HttpStatus.OK);
+		
 	}
 	
 	@GetMapping
-	public ResponseEntity<String> getAllStudent() {
+	public ResponseEntity<ApiResponse<Student>> getAllStudent() {
 		
 		List<Student> student = service.getAllEmployeeList();
-		return new ResponseEntity<>(student.toString(),HttpStatus.OK);
+		
+		ApiResponse<Student> response = new ApiResponse<Student>(student);
+		return new ResponseEntity<>(response,HttpStatus.OK);
+		//return new ResponseEntity<>(student.toString(),HttpStatus.OK);
 	}
 
 	@DeleteMapping(path = "/deleteByEmailId/{emailId}")
