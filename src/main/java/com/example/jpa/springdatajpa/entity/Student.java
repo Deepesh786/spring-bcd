@@ -7,10 +7,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.annotations.GenericGenerator;
 
 import com.example.jpa.springdatajpa.converters.JSONObjectConverter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import lombok.AllArgsConstructor;
@@ -29,9 +34,15 @@ import lombok.NoArgsConstructor;
 		columnNames = "emailid"
 				)
 		)
-//@JsonIgnoreProperties(ignoreUnknown = true)
-//@JsonInclude(value = Include.NON_NULL)
-public class Student {
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(value = Include.NON_NULL)
+public class Student extends CommonDataEntity {
+
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 
 //	@Id
 //	@SequenceGenerator(
@@ -44,20 +55,20 @@ public class Student {
 //			generator = "student_sequence"
 //			)
 	
-	@Id
-	@GeneratedValue(generator = "UUID")
-	@GenericGenerator(name = "UUID", strategy = "com.example.jpa.springdatajpa.service.UUIDIdentifier")
+	//@Id
+	//@GeneratedValue(generator = "UUID")
+	//@GenericGenerator(name = "UUID", strategy = "com.example.jpa.springdatajpa.service.UUIDIdentifier")
 	//@JsonProperty("studentid")
 	//@Value("${UUID.randomUUID().toString()}")
-	@Column(name = "studentid")
-	private String studentId;
+	//@Column(name = "studentid")
+	//private String studentId;
 	
 	
 	//@JsonProperty("firstName")
 	@Column(name = "firstname" )
 	private String firstName;
 	
-	
+	@JsonIgnore
 	@Column(name = "lastname")
 	private String lastName;
 
@@ -77,18 +88,13 @@ public class Student {
 	@Column(name = "guardianemail")
 	private String guardianEmail;
 	
-	@Column(name = "guardianmobile")
+	@Pattern(regexp="(^[0-9]*$)")
+	@Column(name = "guardianmobile" , length = 12)
 	private String guardianMobile;
 
 	
 	
-	public String getStudentId() {
-		return studentId;
-	}
-
-	public void setStudentId(String studentId) {
-		this.studentId = studentId;
-	}
+	
 
 	public String getFirstName() {
 		return firstName;
@@ -148,10 +154,12 @@ public class Student {
 
 	@Override
 	public String toString() {
-		return "Student [studentId=" + studentId + ", firstName=" + firstName + ", lastName=" + lastName + ", emailId="
-				+ emailId + ", attribute=" + attribute + ", guardianName=" + guardianName + ", guardianEmail="
-				+ guardianEmail + ", guardianMobile=" + guardianMobile + "]";
+		return "Student [firstName=" + firstName + ", lastName=" + lastName + ", emailId=" + emailId + ", attribute="
+				+ attribute + ", guardianName=" + guardianName + ", guardianEmail=" + guardianEmail
+				+ ", guardianMobile=" + guardianMobile + "]";
 	}
+
+	
 
 	
 	

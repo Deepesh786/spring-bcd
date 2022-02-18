@@ -1,0 +1,19 @@
+<configuration>
+    <appender name="STDOUT" target="System.out" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%-30(%d{HH:mm:ss.SSS} [%15.15thread] %-5level) %30.30logger{32} - %X{userContext} %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>2048</queueSize>
+        <neverBlock>true</neverBlock>
+        <appender-ref ref="STDOUT" />
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="ASYNC"/>
+    </root>
+
+</configuration>

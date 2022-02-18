@@ -1,5 +1,6 @@
 package com.example.jpa.springdatajpa.controller;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -53,16 +54,19 @@ public class StudentController {
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@PostMapping(path = "/save")
-	public ResponseEntity<String> save(@RequestBody String body) throws JsonMappingException, JsonProcessingException {
-		JSONObject studentObj = new JSONObject(body);
+	public ResponseEntity<ApiResponse<Student>> save(@RequestBody Student student) throws JsonMappingException, JsonProcessingException {
+		//JSONObject studentObj = new JSONObject(body);
 		//StudentService service = SpringContext.getBean(StudentService.class);
 		StudentService serviceDP = applicationContext.getBean(StudentService.class);
 		
-		Student student = new ObjectMapper().readValue(studentObj.toString(), Student.class);
-
-		student = serviceDP.updateEmployee(student);
+	//	Student student = new ObjectMapper().readValue(studentObj.toString(), Student.class);
 		
-		return new ResponseEntity<>(student.toString(),HttpStatus.OK);
+		student = serviceDP.updateEmployee(student);
+		//List<Student> student1 = new ArrayList<Student>();
+		//student1.add((Student) student);
+		
+		//return new ResponseEntity<>(student.toString(),HttpStatus.OK);
+		return new ResponseEntity<>(new ApiResponse<Student>(student),HttpStatus.OK);
 		
 	}
 	
