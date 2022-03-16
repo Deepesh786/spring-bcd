@@ -12,7 +12,6 @@ import com.example.jpa.springdatajpa.repository.StudentRepository;
 import com.example.jpa.springdatajpa.service.StudentService;
 
 @Component
-
 public class StudentServiceImpl implements StudentService {
 	
 	@Autowired
