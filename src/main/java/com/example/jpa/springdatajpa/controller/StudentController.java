@@ -7,10 +7,13 @@ import java.util.List;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.example.jpa.springdatajpa.implementaions.Storage;
+import com.example.jpa.springdatajpa.service.StorageService;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,7 +52,9 @@ public class StudentController {
 //	public StudentController(StudentService service) {
 //		this.service = service;
 //	}
-//	
+//
+	@Autowired
+	private StorageService storageService;
 
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -72,7 +77,9 @@ public class StudentController {
 	
 	@GetMapping
 	public ResponseEntity<ApiResponse<Student>> getAllStudent() {
-		
+
+		String str = storageService.qualifierTest("dipesh");
+		System.out.println(str);
 		List<Student> student = service.getAllEmployeeList();
 		
 		ApiResponse<Student> response = new ApiResponse<Student>(student);

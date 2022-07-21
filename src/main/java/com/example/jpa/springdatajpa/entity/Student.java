@@ -22,6 +22,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @Entity
 //@Data
 @AllArgsConstructor
@@ -36,7 +38,7 @@ import lombok.NoArgsConstructor;
 		)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(value = Include.NON_NULL)
-public class Student extends CommonDataEntity {
+public class Student extends CommonDataEntity implements Serializable{
 
 /**
 	 * 

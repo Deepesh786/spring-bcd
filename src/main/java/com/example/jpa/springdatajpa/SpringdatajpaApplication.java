@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 
 @SpringBootApplication
-//@ComponentScan("com.example.jpa.springdatajpa.service")
+@ComponentScan({"com.service.bcd","com.example.jpa.springdatajpa"})
 public class SpringdatajpaApplication {
 
 	

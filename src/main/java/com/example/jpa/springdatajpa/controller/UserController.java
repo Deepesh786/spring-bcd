@@ -32,6 +32,7 @@ public class UserController {
 		
 		UserService service = applicationContext.getBean(UserService.class);
 		user.setPassword("@1234");
+		user.setId(user.getName()+"-"+user.getMobile());
 		user = service.saveUser(user);
 		
 		
