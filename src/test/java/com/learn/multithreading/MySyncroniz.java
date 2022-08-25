@@ -1,7 +1,10 @@
 package com.learn.multithreading;
 
 
-    class TotalEarning extends Thread{
+import java.util.HashMap;
+import java.util.Map;
+
+class TotalEarning extends Thread{
 
         static int total=0;
         public void run(){
@@ -29,6 +32,9 @@ package com.learn.multithreading;
         }
 
         public static void main(String[] args) {
+
+            Map<String,Integer> m =new HashMap();
+
             TotalEarning totalEarning = new TotalEarning();
            // totalEarning.setDaemon(true);
             totalEarning.start();
