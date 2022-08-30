@@ -7,7 +7,8 @@ public class MinMaxSalary {
 
     static List<Employee> empList = Arrays.asList(new Employee("Deepesh", 24, 10),
             new Employee("xyz", 25, 9),
-            new Employee("yo", 28, 8));
+            new Employee("yo", 28, 8),
+            new Employee("yo", 29, 7));
 
 
     public static void main(String[] args) {

@@ -27,8 +27,8 @@ public class CommonDataEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	//@GeneratedValue(generator = "UUID")
-	//@GenericGenerator(name = "UUID", strategy = "com.example.jpa.springdatajpa.service.UUIDIdentifier")
+	@GeneratedValue(generator = "UUID")
+	@GenericGenerator(name = "UUID", strategy = "com.example.jpa.springdatajpa.service.UUIDIdentifier")
 	//@JsonProperty("studentid")
 	//@Value("${UUID.randomUUID().toString()}")
 	@Column(name = "id")
