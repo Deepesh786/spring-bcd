@@ -30,6 +30,7 @@ public class AttachmentService {
                     fileType(multipartFile.getContentType()).
                     data(multipartFile.getBytes()).
                     build();
+
             return attachmentRepository.save(attachment);
 
         } catch (Exception e) {
@@ -38,12 +39,7 @@ public class AttachmentService {
     }
 
     public Attachment getAttachment(String id) throws Exception {
-
         return attachmentRepository.findById(id).orElseThrow(()->new Exception("Could not find attachment "+id));
     }
-
-
-
-
 
 }

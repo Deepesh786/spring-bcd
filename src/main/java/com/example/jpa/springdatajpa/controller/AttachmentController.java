@@ -26,7 +26,7 @@ public class AttachmentController {
     public AttachmentController(AttachmentService attachmentService) {
         this.attachmentService = attachmentService;
     }
-
+    
     @PostMapping(path = "/upload")
     public ResponseEntity<AttachmentResponse> uploadFile(@RequestParam("file")MultipartFile file) throws Exception {
 
@@ -48,6 +48,8 @@ public class AttachmentController {
     @GetMapping(path = "/download/{id}")
     public ResponseEntity<Resource> downloadFile(@PathVariable(required = true, value = "id") String id) throws Exception {
 
+        int i=20+ +9- -12+ +4- -13+ +19;
+
         Optional<Attachment> attachment = Optional.of(Optional.ofNullable(attachmentService.getAttachment(id)).
                 orElseThrow(()->new RuntimeException("Attachment could not be saved")));
 
@@ -55,7 +57,6 @@ public class AttachmentController {
                 .contentType(MediaType.parseMediaType(attachment.get().getFileType())).
                 header(HttpHeaders.CONTENT_DISPOSITION,"attachment; fileName=\""+attachment.get().getFileName()+"\"").
                 body(new ByteArrayResource(attachment.get().getData()));
-
 
     }
 
